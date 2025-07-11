@@ -1,7 +1,10 @@
 body{
-    background-color: #0f0f0f;       
+    background-color: #131313;       
 }
 
+* {
+    font-size: 18px;
+}
 
 div.container {
    
@@ -10,7 +13,8 @@ div.container {
     text-align-last: center;
     position: relative;
     margin: auto;
-    height: 370px;
+    font-family: Arial ;
+    height: 350px;
     width: 550px;
     border-radius: 40px;
     margin-top: 200px;
@@ -18,7 +22,7 @@ div.container {
 
 #h2 {
 
-    font-size: 40px;
+    font-size: 50px;
     margin: 10px;
 }
 #h3 {
@@ -27,36 +31,56 @@ div.container {
 }
 
 #textarea{ 
+    font-size: 30px;
+    align-content: center;
     width: 450px;
-    height: 60px;
-    border-radius: 25px;
+    height: 80px;
+    border-radius: 20px;
+    font-family: Arial ;
     color: rgb(0, 0, 0);
-    margin-top: 15px;
+    outline-style: none;
+    resize: none;
+    
 }
 
 textarea::placeholder {
     margin: auto;
-    font-size: 20px;
-    padding-top: 18px;
+    font-size: 25px;
+    padding-top: 3px;
 }
+
+ 
+
 #select {
 
-    width: 450px;
-    height: 40px;
-    border-radius: 30px;
-    margin-top: 10px;
+    width: 150px;
+    height: 50px;
+    border-radius: 15px;
+    font-family: Arial ;
+    position: relative;
+    top: 16px;
+    left: -5px;
+    cursor: pointer;
 }
 
 .button{
-    width: 450px;
+    width: 280px;
     height: 50px;
     font-size: 30px;
+    font-family: Arial ;
     font-weight: 600;
     color: rgb(255, 255, 255);
     background-color: #1d1d1dd8;
     border-radius: 20px;
-    margin-top: 20px;
+    position: relative;
+    top: 20px;
+    left: 5px;
     outline-style: auto;
+    cursor: pointer;
+    transition: 0.2s;
+    
 }
-
+.button:hover{
+    background-color: rgb(61, 61, 61);
+}
 
