@@ -1,0 +1,62 @@
+body{
+    background-color: #0f0f0f;       
+}
+
+
+div.container {
+   
+    color: rgb(255, 255, 255);
+    background-color: rgb(31, 31, 31);
+    text-align-last: center;
+    position: relative;
+    margin: auto;
+    height: 370px;
+    width: 550px;
+    border-radius: 40px;
+    margin-top: 200px;
+}
+
+#h2 {
+
+    font-size: 40px;
+    margin: 10px;
+}
+#h3 {
+    font-size: 25px;
+    margin: 10px;
+}
+
+#textarea{ 
+    width: 450px;
+    height: 60px;
+    border-radius: 25px;
+    color: rgb(0, 0, 0);
+    margin-top: 15px;
+}
+
+textarea::placeholder {
+    margin: auto;
+    font-size: 20px;
+    padding-top: 18px;
+}
+#select {
+
+    width: 450px;
+    height: 40px;
+    border-radius: 30px;
+    margin-top: 10px;
+}
+
+.button{
+    width: 450px;
+    height: 50px;
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    background-color: #1d1d1dd8;
+    border-radius: 20px;
+    margin-top: 20px;
+    outline-style: auto;
+}
+
+
