@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"strings"
@@ -9,52 +10,62 @@ import (
 	asciiartweb "asciiartweb/asciiget"
 )
 
+type PageData struct {
+	Output string
+	Name   string
+	Banner string
+}
+
 func main() {
-	fs := http.FileServer(http.Dir("css"))
-	http.Handle("/css/", http.StripPrefix("/css/", fs))
-	http.HandleFunc("/", aa)
-	http.HandleFunc("/submit", Asciirprint)
+	http.HandleFunc("/", handleForm)
+	http.HandleFunc("/result", handleResult)
 	http.ListenAndServe(":8080", nil)
 }
 
-func aa(w http.ResponseWriter, r *http.Request) {
-	tem, err := template.ParseFiles("templates/index.html")
+// Handles GET request to display the form
+func handleForm(w http.ResponseWriter, r *http.Request) {
+	data := PageData{}
+	tmpl2, err := template.ParseFiles("templates/index.html")
 	if err != nil {
+		http.Error(w, "Failed to load template", http.StatusInternalServerError)
 		return
 	}
-	//	new := r.URL.Query().Get("input")
 
-	tem.Execute(w, nil)
+	tmpl2.Execute(w, data)
 }
 
-func Asciirprint(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
+// Handles POST request and displays ASCII result
+func handleResult(w http.ResponseWriter, r *http.Request) {
+	data := PageData{}
+
+	if r.Method == http.MethodPost {
+		err := r.ParseForm()
+		if err != nil {
+			http.Error(w, "Failed to parse form", http.StatusBadRequest)
+			return
+		}
+
+		data.Name = r.FormValue("input")
+		data.Banner = r.FormValue("select")
+
+		bannerContent, err := os.ReadFile(data.Banner + ".txt")
+		if err != nil {
+			http.Error(w, "Banner file not found", http.StatusNotFound)
+			return
+		}
+		fmt.Println(data.Name)
+		lines := strings.Split(string(bannerContent), "\n")
+		textLines := strings.Split(data.Name, "\r\n") // Important: user should use \n in textarea input
+		data.Output = asciiartweb.AsciiPrint(lines, textLines)
+			fmt.Println(data.Output)
 	}
 
-	err := r.ParseForm()
+	tmpl, err := template.ParseFiles("templates/index.html")
 	if err != nil {
-		http.Error(w, "Form parsing error", http.StatusBadRequest)
+		http.Error(w, "Failed to load template", http.StatusInternalServerError)
 		return
 	}
 
-	banner := r.FormValue("select")
-	bannertxt, err := os.ReadFile(banner + ".txt")
-	if err != nil {
-		http.Error(w, "Banner file not found", http.StatusNotFound)
-		return
-	}
-
-	name := r.FormValue("input")
-	n1 := strings.Split(string(bannertxt), "\n")
-	n2 := strings.Split(name, "\\n")
-	outpout := asciiartweb.AsciiPrint(n1, n2)
-
-	tmpl, err := template.ParseFiles("templates/new.html")
-	if err != nil {
-		http.Error(w, "Template error", http.StatusInternalServerError)
-		return
-	}
-	tmpl.Execute(w, map[string]string{"Name": outpout})
+	tmpl.Execute(w, data)
 }
+

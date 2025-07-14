@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Ascii Art Web</title>
+    <title>ASCII Art Generator</title>
+   
 </head>
 <body>
-    <div class="container">
-        <br>
-        <h2 id="h2">Ascii Art Web</h2>
-        <h3 id="h3">Generator</h3>
-        <form action="/submit" method="POST">
-            <br>
-            <textarea id="textarea" name="input" placeholder="Enter Value"></textarea>
-            <br>
-            <select name="select" id="select">
-                <option value="standard">standard</option>
-                <option value="shadow">shadow</option>
-                <option value="thinkertoy">thinkertoy</option>
-            </select>
-            <br>
-            <button type="submit">Generate ASCII Art</button>
-        </form></form>
-    </div>
+    <h1>ASCII Art Generator</h1>
+    <form method="POST" action="/result">
+        <label>Text:</label><br>
+        <textarea name="input" rows="4" cols="50"></textarea><br><br>
+
+        <label>Banner:</label><br>
+        <select name="select">
+            <option value="shadow" >Shadow</option>
+            <option value="standard" >Standard</option>
+            <option value="thinkertoy" >Thinkertoy</option>
+        </select><br><br>
+
+        <button type="submit">Generate ASCII Art</button>
+    </form>
+
+    
+        <h2>Generated ASCII Art:</h2>
+        <pre style="background-color:#f4f4f4; padding:10px; border:1px solid #ca7f7f;">
+{{.Output}}
+        </pre>
+   
 </body>
 </html>
