@@ -10,11 +10,6 @@ import (
 	asciiartweb "asciiartweb/asciiget"
 )
 
-type PageData struct {
-	Output string
-	Name   string
-	Banner string
-}
 
 func main() {
 	http.HandleFunc("/", handleForm)
@@ -24,41 +19,40 @@ func main() {
 
 // Handles GET request to display the form
 func handleForm(w http.ResponseWriter, r *http.Request) {
-	data := PageData{}
+
 	tmpl2, err := template.ParseFiles("templates/index.html")
 	if err != nil {
 		http.Error(w, "Failed to load template", http.StatusInternalServerError)
 		return
 	}
 
-	tmpl2.Execute(w, data)
+	tmpl2.Execute(w, nil)
 }
 
 // Handles POST request and displays ASCII result
 func handleResult(w http.ResponseWriter, r *http.Request) {
-	data := PageData{}
+	
 
-	if r.Method == http.MethodPost {
+	
 		err := r.ParseForm()
 		if err != nil {
 			http.Error(w, "Failed to parse form", http.StatusBadRequest)
 			return
 		}
 
-		data.Name = r.FormValue("input")
-		data.Banner = r.FormValue("select")
+		Name := r.FormValue("input")
+		Banner := r.FormValue("select")
 
-		bannerContent, err := os.ReadFile(data.Banner + ".txt")
+		bannerContent, err := os.ReadFile(Banner + ".txt")
 		if err != nil {
 			http.Error(w, "Banner file not found", http.StatusNotFound)
 			return
 		}
-		fmt.Println(data.Name)
+		fmt.Println(Name)
 		lines := strings.Split(string(bannerContent), "\n")
-		textLines := strings.Split(data.Name, "\r\n") // Important: user should use \n in textarea input
-		data.Output = asciiartweb.AsciiPrint(lines, textLines)
-			fmt.Println(data.Output)
-	}
+		textLines := strings.Split(Name, "\r\n") // Important: user should use \n in textarea input
+		output := asciiartweb.AsciiPrint(lines, textLines)
+	
 
 	tmpl, err := template.ParseFiles("templates/index.html")
 	if err != nil {
@@ -66,6 +60,5 @@ func handleResult(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl.Execute(w, data)
+	tmpl.Execute(w, map[string]string{"Output":output})
 }
-
