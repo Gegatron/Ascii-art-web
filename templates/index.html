@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Ascii Art Web</title>
-</head>
-<body>
-    <div class="container">
-        <br>
-        <h2 id="h2">Ascii Art Web</h2>
-        <h3 id="h3" >Generator</h3>
-        <br>
-        <form action="/submit" method="post"></form>
-        <textarea id="textarea" name="input" placeholder="Entre Value" ></textarea>
-        <br>
-        <select name="select" aria-placeholder="select" id="select">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 
-          <option value="standart">standard</option>
-          <option value="shadow">shadow</option>
-          <option value="thinkertoy">thinkertoy</option>
-        </select>
-        <button class="button" >Submit</button>
-        <</form>
-    </div>
+        <link rel="stylesheet" href="/css/style.css">
+        <title>Ascii Art Web</title>
+    </head>
+    <body>
+         <form action="/ascii-art" method="post">
+            <div class="container">
+
+                <div class="div1">
+                    <h2 class="Title">Ascii Art Web</h2>
+                </div>
+    
+                <div class="div2">
+                    <textarea class="textarea" name="Input" placeholder="Entre Value" maxlength="1000" ></textarea>
+                </div>
+
+                <div class="div3">
+                    <button class="button">Submit</button>
+                </div>
+
+                <div class="div4">
+                    <select class="Selector" name="Select" aria-placeholder="Select">
+        
+                        <option value="standard">standard</option>
+                        <option value="shadow">shadow</option>
+                        <option value="thinkertoy">thinkertoy</option>
+                   </select>
+                </div>
+            
+            </div>
+        </form>
+
 </body>
 </html>

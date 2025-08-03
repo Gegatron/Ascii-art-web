@@ -1,0 +1,102 @@
+
+body{
+    background-image: url('assets/background.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+div.container2 {
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    gap: 30px;
+    padding: 50px;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0);
+     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); 
+    margin: auto;
+    height: 450px;
+    width: 650px;
+    border-radius: 90px;
+    border: solid white;
+    box-shadow: 0 0 10px;
+}
+
+
+.container2 div {
+    background-color: rgba(196, 196, 196, 0);
+    border-radius: 35px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div5 {
+      grid-row: 1/10;
+    grid-column: 1/-1;
+    border: solid white;
+    box-shadow: 0 0 10px;
+}
+.div6 {
+     grid-row: 10/-1;
+    grid-column: 2/10;
+
+}
+
+
+.Result { 
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    align-content: center;
+    font-size: 15px;
+    width: 97%;
+    height: 90%;
+    border-radius: 35px;
+    color: rgb(255, 255, 255);
+    font-weight: 900;
+    border:  none;
+    overflow: auto;
+    scrollbar-color: #ffffffa8 transparent;
+    text-shadow: 0 0 10px;
+}
+
+
+.Return {
+  height: 60px;
+  width: 300px;
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    background-color: #1d1d1d00;
+    border-radius: 35px;
+    border: solid white;
+    cursor: pointer;
+    transition: 0.2s;
+
+    font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  box-shadow: 0 0 10px;
+  text-shadow:  0 0 10px;
+    
+}
+.Return:hover{
+    background-color: rgb(210, 0, 255);
+    box-shadow: 0 0 35px rgb(210, 0, 255);
+}
+
